@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>        
+        <style>
+            .space_left { margin-left: 10px; }
+            .space_right { margin-right: 10px; }
+        </style>
+
         <script src="js/glTest.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            function applyNewCanvasSize ()
+            {
+                newWidth = document.getElementById ("canvas_width").value;
+                newHeight = document.getElementById ("canvas_height").value;
+
+                canvas = document.getElementById("canvas");
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+            }
+        </script>
     </head>
+
     <body onload="onLoad()">
         <h1>OpenGL Test</h1>
-        <canvas id="canvas" width="640" height="480">
-            Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
-        </canvas>
+        <form>            
+            <label>Canvas width</label> <input id="canvas_width" type="number">
+            <label class="space_left">Canvas height</label> <input id="canvas_height" title="Height" type="number">
+            <input id="apply_canvas_size" type="button" value="Apply new size" onclick="applyNewCanvasSize()">
+        </form>
+        <div style="margin-top: 10px;">
+            <canvas id="canvas" width="640" height="480">
+                Your browser doesn't appear to support the HTML5 <code>&lt;canvas&gt;</code> element.
+            </canvas>
+        </div>
     </body>
 </html>

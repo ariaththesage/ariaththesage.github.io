@@ -5,7 +5,9 @@ var gl;
 
 function onLoad()
 {
-	canvas = document.getElementById("canvas");
+	canvas = document.getElementById("canvas");	
+	window.addEventListener ('keydown', onKeyDown);
+	window.addEventListener ('mousedown', onMouseDown);
 
 	initWebGL(canvas);
 
@@ -14,15 +16,18 @@ function onLoad()
 		gl.enable(gl.DEPTH_TEST);
 		gl.depthFunc(gl.LEQUAL);
 
-		updateLoop();
-		renderLoop();
+		frameLoop ();
 	}
 }
 
 
-function Update ()
+function onFrame ()
 {
-	console.log ("Ticking...");
+	// Check the input here
+
+	// Update the logic here
+
+	Render ();
 }
 
 
@@ -54,14 +59,20 @@ function initWebGL(canvas)
 }
 
 
-function updateLoop ()
+function frameLoop()
 {
-	Update ();
-	window.setTimeout (updateLoop, (1000/60));
+	onFrame ();
+	window.setTimeout(onFrame, (1000 / 60));
 }
 
 
-function renderLoop() {
-	Render();
-	window.setTimeout(renderLoop, (1000 / 60));
+function onMouseDown (mouseEvent)
+{
+	console.log ("Pressing " + mouseEvent.button);
+}
+
+
+function onKeyDown (keyboardEvent)
+{
+	console.log ("Pressing " + keyboardEvent.key);
 }
